@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a {
+    text-decoration: none;
+}
+/* =========================header========================== */
+.header {
+    width: 100%;
+    height: 150px;
+    background-color: aliceblue;
+    box-shadow: 5px 10px 15px #888888;
+}
+.header-mid{
+    margin-left: 15%;
+    margin-right: 15%;
+    /* background-color: aqua; */
+    height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+}
+.header-top {
+    height: 50%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
+.header .header-mid .header-top .left {
+    width: 400px;
+    height: 100%;
+    /* background-color: #ff0000; */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.header .header-mid .header-top .right {
+    width: 400px;
+    height: 100%;
+    /* background-color: #ff0000; */
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: center;
+}
+.header .header-mid .header-top .right button:hover {
+
+    background-color: rgb(31, 31, 31);
+    color: aliceblue;
+    transition: 0.3s;
+}
+.header .header-mid .header-top .right .name {
+    margin-right: 10px;
+    background-color: rgb(245, 249, 253);
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgb(245, 249, 253);
+}
+.header .header-mid .header-top .right .google {
+    margin-right: 10px;
+    background-color: aliceblue;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: rgb(245, 249, 253);
+}
+.header-bot{
+    height: 50%;
+    width: 100%;
+}
+/* =======================after-body=================== */
+.after-body {
+    margin-top: 100px;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: fit-content;
+    background-color: rgb(245, 249, 253);
+    box-shadow: 5px 10px 15px #888888;
+    padding-bottom: 20px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+}
+.after-body > h2 {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 30px;
+}
+.cover{
+    height: fit-content;
+    width: 100%;	
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
+	align-content: stretch;
+}
+.content {
+    height: 400px;
+    width: 30%;
+    border-radius: 10px;
+    border: 0.5px solid rgb(129, 129, 129);
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+.content:hover {
+    box-shadow: 5px 10px 15px #888888;
+    transition: 0.3s;
+}
+.content-image {
+    margin-top: 20px;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 40%;
+    background-color: #888888;
+    border-radius: 10px;
+}
+.after-body .cover {
+    display: flex;
+    flex-direction: column;
+}
+/* cover */
+.item-parents {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(245, 249, 253);
+    margin-top: 15px;
+    border-bottom: 0.2px solid black;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: stretch;
+}
+.item-children1 {
+    padding-top: 7px;
+    width: 10%;
+    height: 40px;
+    border-right: 1px double rgb(187, 219, 255);
+    padding-left: 15px;
+}
+.item-children2 {
+    padding-top: 7px;
+    width: 15%;
+    height: 40px;
+    border-right: 1px double rgb(187, 219, 255);
+    padding-left: 15px;
+}
+.item-children3 {
+    padding-top: 7px;
+    width: 20%;
+    height: 40px;
+    border-right: 1px double rgb(187, 219, 255);
+    padding-left: 15px;
+}
+.item-children4 {
+    width: 10%;
+    height: 40px;
+    border-right: 1px double rgb(187, 219, 255);
+    padding-left: 15px;
+}
+.item-children5{
+    padding-top: 7px;
+    width: 20%;
+    height: 40px;
+    border-right: 1px double rgb(187, 219, 255);
+    padding-left: 15px;
+}
+.item-children6 {
+    padding-top: 7px;
+    width: 25%;
+    height: 40px;
+    border-right: 1px double rgb(187, 219, 255);
+    padding-left: 15px;
+}
+.item-children4 .image-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

@@ -1,0 +1,63 @@
+.main-header{
+    margin-bottom: 30px;
+}
+.main-content{
+    display: flex;
+    background-color: rgb(180, 241, 250);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.content-left-avatar{
+    width: 35%;
+    background-color: rgb(128, 214, 214);
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+.content-left-avatar .avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:80%;    
+}
+
+.content-right-information{
+    width: 60%;
+    /* background-color: aquamarine; */
+    display:block;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.content-right-information > hr{
+    margin-left: 15px;
+}
+
+.content-right-information h4{
+    margin: 20px;
+}
+
+.row-item{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.col-item{
+    margin-left: 25px;
+    margin-top: 5px;
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.col-item > div > input{
+    border: none;
+    background: none !important;
+}
+
+.input-save-button > input{
+    background: none !important;
+    color: #fff;
+}

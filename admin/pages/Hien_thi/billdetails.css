@@ -1,0 +1,42 @@
+.bill-details{
+    position: fixed;
+    left: 20%;
+    top: 20%;
+    z-index: 100;
+    color: black;
+    display: none;
+}
+
+.form-bill-details{
+    border: 1px solid #ccc;
+    width: 140vh;
+    background-color: rgb(221, 252, 239);
+    position: absolute;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.show-bd:hover .bill-details{
+    display: block;
+}
+.inf-customer{
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.inf-customer > div {
+    text-align: left;
+}
+
+.inf-customer > div > span{
+    margin-left: 20px;
+}
+
+.buy-list{
+    width: 90%;
+}
