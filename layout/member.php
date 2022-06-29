@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Member</title>
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -25,16 +25,16 @@
             rel="stylesheet"
     />
     <!-- summernote -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css" />
-    <link rel="stylesheet" href="../../dist/css/them.css" />
-    <link rel="stylesheet" href="../../dist/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="../css/member.css" />
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css"/>
+    <link rel="stylesheet" href="../../dist/css/them.css"/>
+    <link rel="stylesheet" href="../../dist/css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="../css/member.css"/>
 </head>
 <body>
 <?php
 require_once "../php/checkroleuser.php";
 require_once "../php/dbconnection.php";
-$sql = "SELECT hoTen FROM nguoidung WHERE idNguoiDung = '".$_COOKIE["2"]."'";
+$sql = "SELECT hoTen FROM nguoidung WHERE idNguoiDung = '" . $_COOKIE["2"] . "'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $sql = "SELECT * FROM nguoidung JOIN lop ON nguoidung.idLop = lop.idLop JOIN khoa ON lop.idKhoa = khoa.idKhoa WHERE idQuyen = 2";
@@ -52,7 +52,16 @@ $result = $conn->query($sql);
                 <a href="">About</a>
             </div>
             <div class="right">
-                <button class="google">Google</button>
+                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                    <button class="google" type="submit" name="logout">Đăng xuất</button>
+                </form>
+                <?php
+                if (isset($_POST["logout"])) {
+                    setcookie("2", null, -1, "/");
+                    header("Location: login.php");
+                    exit();
+                }
+                ?>
                 <button class="name"><?php echo $row["hoTen"] ?></button>
             </div>
         </div>
@@ -83,8 +92,8 @@ $result = $conn->query($sql);
             </div>
         </div>
         <?php
-        $cnt=1;
-        while ($row=$result->fetch_assoc()){
+        $cnt = 1;
+        while ($row = $result->fetch_assoc()) {
             ?>
             <div class="item-parents">
                 <div class="item-children1">
@@ -103,8 +112,9 @@ $result = $conn->query($sql);
                     ?>
                 </div>
                 <div class="item-children4">
-                    <?php if ($row["avt"] != null){ ?>
-                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['avt']); ?>" class="avatar" alt="" srcset="">
+                    <?php if ($row["avt"] != null) { ?>
+                        <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['avt']); ?>"
+                             class="avatar" alt="" srcset="">
                     <?php } else { ?>
                         <img src="../image/avtnull.png" class="image-avatar" alt="" srcset="">
                     <?php } ?>

@@ -46,7 +46,7 @@ function  renderUsers(users){
               <td><p id="show-user-password">${user.password}</p></td>
               <td><img src="${user.avatar}" alt="" width="100px"></td>
               <td>
-                  <a class="btn btn-primary" onclick="clickButtonEditInf(${user.id})" href="../Chinh_sua_danh_muc/User.html" id="edit-user-${user.id}" ><i
+                  <a class="btn btn-primary" onclick="clickButtonEditInf(${user.id})" href="../Chinh_sua_danh_muc/User.php" id="edit-user-${user.id}" ><i
                   class="far fa-edit"></i>
                   
                   </a>

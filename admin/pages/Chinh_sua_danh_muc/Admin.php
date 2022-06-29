@@ -4,17 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fruit</title>
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Theme style -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<!-- summernote -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/them.css">
-  
+  <link rel="stylesheet" href="../../dist/css/jquery-ui.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+$err ="";
+?>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -24,7 +35,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="home.php" class="nav-link">Home</a>
+        <a href="../Hien_thi/home.php" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -63,7 +74,7 @@
                 <i class="far fa-user-circle"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../Hien_thi/ChangeInf.html">Change Information</a>
+                <a class="dropdown-item" href="../Hien_thi/ChangeInf.php">Change Information</a>
                 <a class="dropdown-item" role="button" onclick="onClickButtonSignOut()" href="#"><i class="fas fa-sign-out-alt"></i>Log out(<data id="userNameLogin"></data>) </a>
                 <!-- làm logout là chuyển về trang đăng nhập và xóa jwt. -->
             </div>
@@ -76,10 +87,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; ">
     <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="../../img/taday.jpg"
            alt="logo Web" class="brand-image img-circle elevation-3" style="opacity: 1;">
-      <span class="brand-text font-weight-light">Admin</span>
+        <span class="brand-text font-weight-light"><?php echo $row['hoTen']?></span>
     </a>
 
     <!-- Sidebar -->
@@ -112,7 +123,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="fa-solid fa-file-circle-plus"></i>
               <p>
                 Add or update
@@ -121,31 +132,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Faculty.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Faculty.php" class="nav-link ">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Class.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
-              </li>       
+              </li>      
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/News.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/User.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Admin.html" class="nav-link">
+                <a href="Admin.php" class="nav-link active">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>Admin</p>
                 </a>
@@ -154,7 +165,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="fa-solid fa-list-check"></i>
               <p>
                 Management
@@ -163,26 +174,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Hien_thi/Faculty.html" class="nav-link active">
+                <a href="../Hien_thi/Faculty.php" class="nav-link">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="../Hien_thi/Class.html" class="nav-link">
+                <a href="../Hien_thi/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
-              </li> 
+              </li>
               <li class="nav-item">
-                <a href="../Hien_thi/News.html" class="nav-link">
+                <a href="../Hien_thi/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/User.html" class="nav-link">
+                <a href="../Hien_thi/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
@@ -208,7 +219,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Management</li>
+              <li class="breadcrumb-item active">Add or update</li>
             </ol>
           </div>
         </div>
@@ -217,55 +228,98 @@
 
     <!-- Main content -->
     <section class="content d-block" style="width: 100%;">
-      <div class="list" id="" style="width: 100%;">
-        <form class="form-inline d-flex" id="list-product" action="" method="get">
-          <div class="filter d-flex flex-row ">
-            <!-- dữ liệu để thực hiện tìm kiếm sản phẩm -->
-            <input type="hidden" id="page" name="page">
-            <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Search" value="">
-            <button type="button" id="btnSearch" name="btnSearch" value="Search"  class="btn btn-primary">Seach</button>
-          </div>
-        </form>
-        <form class="form-list-data" id="" name="create-edit-category" action="" method="">
-          <table class=" mb-5">
-            <thead>
-              <tr>
-                <th style="width: 5%">
-                  ID Category
-                </th>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Description
-                </th>
-                <th>
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody id="table-show-data-category">
+      
+     <div class="m-auto" style="width: 80%;">
+      <form class="p-2 form-management" id="" name="" action="<?php echo $_SERVER['PHP_SELF'];?> method="POST" style="border-radius: 5px; border: solid 1px #ccc; width: 100%;" enctype="multipart/form-data">
+      <h2 class="mt-3" style="text-align: center; font-weight: 500; color: rgb(100, 87, 87);">ADMIN MANAGEMENT</h2>
+         <?php
+         if ($err != "")
+             echo "<p style='color: red'>$err</p>";
+         ?>
+      <div class="">
+<!--        <div class="form-group">-->
+<!--          <label for="">First Name</label><br>-->
+<!--          <input type="text" id="user-preName-in-user" name="preName" path="" Placeholder=" First name">-->
+<!--        </div>-->
 
-            </tbody>
-
-
-
-          </table>
-        </form>
-        <div class="mt-3 d-flex justify-content-center" >
-          <ul class="pagination " style="align-items: center;">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">15</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
+        <div class="form-group">
+          <label for="">Name</label><br>
+          <input type="text" id="user-name-in-user" name="name" path="" Placeholder=" Name" value="" ></input>
         </div>
+
+        <div class="form-group">
+          <label for="">Date of birth</label><br>
+          <input type="date" id="user-age-in-user" name="birthday" path=""></input>
+        </div>
+
+        <div class="form-group">
+          <label for="">Nationality</label><br>
+          <input type="text" id="user-birthday-in-user" name="nationality" path="" Placeholder=" Nationality"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="">Address</label><br>
+          <input type="text" id="user-address-in-user" name="address" path="" Placeholder=" Address"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="">Phone Number</label><br>
+          <input type="text" id="user-phoneNumber-in-user" name="phoneNumber" path="" Placeholder=" Phone Number"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="">Account</label><br>
+          <input type="text" id="user-account-in-user" name="account" path="" Placeholder=" Account"></input>
+        </div>
+
+          <div class="form-group">
+              <label for="">Password</label><br>
+              <input type="password" id="user-password-in-user" name="password" path="" Placeholder=" Password"></input>
+          </div>
+
+          <div class="form-group">
+              <label for="">Repeat password</label><br>
+              <input type="password" id="user-password-in-user" name="rppaw" path="" Placeholder=" Repeat password"></input>
+          </div>
+        <div class="form-group">
+          <label for="">Identity Number</label><br>
+          <input type="password" id="user-password-in-user" name="identitynumber" path="" Placeholder=" Identity Number"></input>
+        </div>
+        <div class="form-group" style="width: 95%;">
+          <label for="">Avatar</label><br>
+          <input type="file" class="form-control-file" id="avatar" name="avatar" multiple>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-danger" >Add Admin</button>
+        <a href=""></a>
+      </div>
+        </div>
+      
+      </form>
       </div>
     </section>
     <!-- /.content -->
   </div>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $name = $_POST['name'];
+    $birthday = $_POST['birthday'];
+    $nationality = $_POST['nationality'];
+    $address = $_POST['address'];
+    $phone = $_POST['phoneNumber'];
+    $acc = $_POST['account'];
+    $password = $_POST['password'];
+    $rppw = $_POST['rppaw'];
+    $identity = $_POST['identitynumber'];
+    if ($password != $rppw)
+    {
+        $err = 'Mật khẩu lặp lại không chính xác.';
+        return;
+    }
+}
+?>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -298,11 +352,8 @@
 <!-- include summernote css/js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 <script src="../../js_admin/jquery-ui.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-<script src="../js/Category.js"></script>
 <script src="../js/login.js"></script>
+<script src="../js/Admin.js"></script>
 <script>
     $(document).on('click', '.check-img', function(){
       var imgId = $(document).find('.img-1 .abc').val();

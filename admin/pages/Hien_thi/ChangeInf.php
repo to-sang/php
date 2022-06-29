@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fruit</title>
-
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -16,8 +15,16 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/them.css">
   <link rel="stylesheet" href="../../dist/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="../Hien_thi/ChangeInf.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+?>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -27,7 +34,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../Hien_thi/home.php" class="nav-link">Home</a>
+        <a href="home.php" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -66,7 +73,7 @@
                 <i class="far fa-user-circle"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../Hien_thi/ChangeInf.html">Change Information</a>
+                <a class="dropdown-item" href="ChangeInf.php">Change Information</a>
                 <a class="dropdown-item" role="button" onclick="onClickButtonSignOut()" href="#"><i class="fas fa-sign-out-alt"></i>Log out(<data id="userNameLogin"></data>) </a>
                 <!-- làm logout là chuyển về trang đăng nhập và xóa jwt. -->
             </div>
@@ -79,10 +86,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; ">
     <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="../../img/taday.jpg"
            alt="logo Web" class="brand-image img-circle elevation-3" style="opacity: 1;">
-      <span class="brand-text font-weight-light">Admin</span>
+        <span class="brand-text font-weight-light"><?php echo $row['hoTen']?></span>
     </a>
 
     <!-- Sidebar -->
@@ -124,31 +131,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Faculty.html" class="nav-link ">
+                <a href="../Chinh_sua_danh_muc/Faculty.php" class="nav-link ">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Class.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>        
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/News.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/User.html" class="nav-link active">
+                <a href="../Chinh_sua_danh_muc/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Admin.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Admin.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>Admin</p>
                 </a>
@@ -166,26 +173,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Hien_thi/Faculty.html" class="nav-link">
+                <a href="Faculty.php" class="nav-link">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="../Hien_thi/Class.html" class="nav-link">
+                <a href="Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/News.html" class="nav-link">
+                <a href="News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/User.html" class="nav-link">
+                <a href="User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
@@ -202,84 +209,105 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add or update</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
     <!-- Main content -->
     <section class="content d-block" style="width: 100%;">
-      
-     <div class="m-auto" style="width: 80%;">
-      <form class="p-2 form-management" id="" name="" action="" method="POST" style="border-radius: 5px; border: solid 1px #ccc; width: 100%;" enctype="multipart/form-data">
-      <h2 class="mt-3" style="text-align: center; font-weight: 500; color: rgb(100, 87, 87);">USERS MANAGEMENT</h2>
-        <div class="">
-          <div class="form-group">
-            <label for="">First Name</label><br>
-            <input type="text" id="user-preName-in-user" name="preName" path="" Placeholder=" First name">
+      <div class="main-content">
+        <div class="content-left-avatar">
+          <div class="avatar">
+            <img src="" id="avatar-change" class="brand-image img-circle elevation-3" style="width: 250px;" alt="">
           </div>
-
-          <div class="form-group">
-            <label for="">Name</label><br>
-            <input type="text" id="user-name-in-user" name="name" path="" Placeholder=" Name" value="" ></input>
-          </div>
-  
-          <div class="form-group">
-            <label for="">Age</label><br>
-            <input type="text" id="user-age-in-user" name="age" path="" Placeholder=" Age"></input>
-          </div>
-
-          <div class="form-group">
-            <label for="">Nationality</label><br>
-            <input type="text" id="user-birthday-in-user" name="birthday" path="" Placeholder=" Nationality"></input>
-          </div>
-
-          <div class="form-group">
-            <label for="">Address</label><br>
-            <input type="text" id="user-address-in-user" name="address" path="" Placeholder=" Address"></input>
-          </div>
-
-          <div class="form-group">
-            <label for="">Phone Number</label><br>
-            <input type="text" id="user-phoneNumber-in-user" name="phoneNumber" path="" Placeholder=" Phone Number"></input>
-          </div>
-
-          <div class="form-group">
-            <label for="">Account</label><br>
-            <input type="text" id="user-account-in-user" name="account" path="" Placeholder=" Account"></input>
-          </div>
-
-          <div class="form-group">
-            <label for="">Password</label><br>
-            <input type="password" id="user-password-in-user" name="password" path="" Placeholder=" Password"></input>
-          </div>
-          <div class="form-group">
-            <label for="">Identity Number</label><br>
-            <input type="password" id="user-password-in-user" name="password" path="" Placeholder=" Identity Number"></input>
-          </div>
-          <div class="form-group" style="width: 95%;">
-            <label for="">Avatar</label><br>
-            <input type="file" class="form-control-file" id="avatar" name="avatar" multiple>
+          
+          <div class="input-save-button">
+            <input type="file" id="user-avatar-in-change" class="mt-3" multiple>
+            <button type="button" id="change-avatar"  onclick="clickButtonSaveEditAvatar()" class="btn btn-primary">Save Edit</button>
           </div>
         </div>
-      
-        <div class="form-group">
-          <a href="#" id="create-user" class="btn btn-danger">Add New User</a>
-          <button type="button" id="edit-user" onclick="clickButtonSaveEditInf()" class="btn btn-primary">Save User</button>
-          <a href=""></a>
+        <div class="content-right-information">
+          <h4 style="text-align: center;">YOUR INFORMATION</h4>
+          <div class="row-item">
+            <div class="col-item">
+              <div class="col1-item-title">
+                <span>First name:</span>
+              </div>
+              <div class="col1-item-content">
+                <input type="text" id="user-preName-in-changeInf" name="preName" path="" Placeholder="First name">
+              </div>
+            </div>
+            <div class="col-item">
+              <div class="col2-item-title">
+                <span>Name:</span>
+              </div>
+              <div class="col2-item-content">
+                <input type="text" id="user-name-in-changeInf" name="name" path="" Placeholder="Name">
+              </div>
+            </div>
+
+          </div>
+          <hr>
+          <div class="row-item">
+            <div class="col-item">
+              <div class="col1-item-title">
+                <span>Age:</span>
+              </div>
+              <div class="col1-item-content">
+                <input type="text" id="user-age-in-changeInf" name="age" path="" Placeholder=" Age"></input>
+              </div>
+            </div>
+            <div class="col-item">
+              <div class="col2-item-title">
+                <span>BirthDay:</span>
+              </div>
+              <div class="col2-item-content">
+                <input type="text" id="user-birthday-in-changeInf" name="birthday" path="" Placeholder=" BirthDay"></input>
+              </div>
+            </div>
+
+          </div>
+          <hr>
+          <div class="row-item">
+            <div class="col-item">
+              <div class="col1-item-title">
+                <span>Address:</span>
+              </div>
+              <div class="col1-item-content">
+                <input type="text" id="user-address-in-changeInf" name="address" path="" Placeholder=" Address"></input>
+              </div>
+            </div>
+            <div class="col-item">
+              <div class="col2-item-title">
+                <span>Name:</span>
+              </div>
+              <div class="col2-item-content">
+                <input type="text" id="user-phoneNumber-in-changeInf" name="phoneNumber" path="" Placeholder=" Phone Number"></input>
+              </div>
+            </div>
+
+          </div>
+          <hr>
+          <div class="row-item">
+            <div class="col-item">
+              <div class="col1-item-title">
+                <span>Account:</span>
+              </div>
+              <div class="col1-item-content">
+                <input type="text" id="user-account-in-changeInf" name="account" path="" Placeholder=" Account"></input>
+              </div>
+            </div>
+            <div class="col-item">
+              <div class="col2-item-title">
+                <span>Password:</span>
+              </div>
+              <div class="col2-item-content">
+                <input type="password" id="user-password-in-change" name="password" path="" Placeholder=" Password"></input>
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="row-item">
+            <button type="button" id="change-information" onclick="clickButtonSaveEditInf()" class="btn btn-primary" style="margin: 25px;">Save Edit</button>
+          </div>
         </div>
-      </form>
       </div>
     </section>
     <!-- /.content -->
@@ -316,9 +344,9 @@
 <!-- include summernote css/js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 <script src="../../js_admin/jquery-ui.js"></script>
-<script src="../js/User.js"></script>
+<script src="../js/Customer.js"></script>
 <script src="../js/login.js"></script>
-
+<script src="../js/ChangeInf.js"></script>
 <script>
     $(document).on('click', '.check-img', function(){
       var imgId = $(document).find('.img-1 .abc').val();

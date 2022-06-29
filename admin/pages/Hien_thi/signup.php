@@ -14,6 +14,13 @@
 </head>
 
 <body>
+<?php
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+?>
 <main class="">
   <div class="sign-up">
     <h1 class="sign-up__title">Get started</h1>

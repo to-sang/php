@@ -12,8 +12,16 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/them.css">
+  
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+?>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -62,7 +70,7 @@
                 <i class="far fa-user-circle"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../Hien_thi/ChangeInf.html">Change Information</a>
+                <a class="dropdown-item" href="ChangeInf.php">Change Information</a>
                 <a class="dropdown-item" role="button" onclick="onClickButtonSignOut()" href="#"><i class="fas fa-sign-out-alt"></i>Log out(<data id="userNameLogin"></data>) </a>
                 <!-- làm logout là chuyển về trang đăng nhập và xóa jwt. -->
             </div>
@@ -75,10 +83,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; ">
     <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="../../img/taday.jpg"
            alt="logo Web" class="brand-image img-circle elevation-3" style="opacity: 1;">
-      <span class="brand-text font-weight-light">Admin</span>
+        <span class="brand-text font-weight-light"><?php echo $row['hoTen']?></span>
     </a>
 
     <!-- Sidebar -->
@@ -86,7 +94,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="" id="img-avatar-user-login" style="width: 35px; height: 35px;" class="img-circle elevation-2" alt="Avatar Image">
+          <img src="" id="img-avatar-user-login" style="width: 35px; height: 35px;" class="img-circle elevation-2" >
         </div>
         <div class="info">
           <a href="#" class="d-block"><data id="userNameLogin2"></data></a>
@@ -104,6 +112,7 @@
           </div>
         </div>
       </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -119,31 +128,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Faculty.html" class="nav-link ">
+                <a href="../Chinh_sua_danh_muc/Faculty.php" class="nav-link">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Class.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
-              </li>        
+              </li>       
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/News.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/User.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Admin.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Admin.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>Admin</p>
                 </a>
@@ -161,26 +170,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Hien_thi/Faculty.html" class="nav-link">
+                <a href="Faculty.php" class="nav-link active">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="../Hien_thi/Class.html" class="nav-link active">
+                <a href="Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
-              </li>
+              </li> 
               <li class="nav-item">
-                <a href="../Hien_thi/News.html" class="nav-link">
+                <a href="News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/User.html" class="nav-link">
+                <a href="User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
@@ -216,39 +225,36 @@
     <!-- Main content -->
     <section class="content d-block" style="width: 100%;">
       <div class="list" id="" style="width: 100%;">
-        <form class="form-inline d-flex" id="list-product" action="${base }#" method="get">
+        <form class="form-inline d-flex" id="list-product" action="" method="get">
           <div class="filter d-flex flex-row ">
             <!-- dữ liệu để thực hiện tìm kiếm sản phẩm -->
-            <input type="text" id="keyword-search-manufacture" name="keyword-search-manufacture" class="form-control" placeholder="Search" value="">
-            <button type="button" id="btnSearch" name="btnSearch" onclick="clickButtonSearch()" value="Search"  class="btn btn-primary">Seach</button>
+            <input type="hidden" id="page" name="page">
+            <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Search" value="">
+            <button type="button" id="btnSearch" name="btnSearch" value="Search"  class="btn btn-primary">Seach</button>
           </div>
         </form>
-        <form class="form-list-data" id="" name="" action="" method="">
-          <table class=" mb-5" id="table-">
+        <form class="form-list-data" id="" name="create-edit-category" action="" method="">
+          <table class=" mb-5">
             <thead>
               <tr>
                 <th style="width: 5%">
-                  ID Manufacture
+                  ID Category
                 </th>
                 <th>
                   Name
                 </th>
                 <th>
-                  Address
-                </th>
-                <th>
-                  Phone Number
+                  Description
                 </th>
                 <th>
                   Action
                 </th>
-  
               </tr>
             </thead>
+            <tbody id="table-show-data-category">
 
-            <tbody id="table-show-data-manufacture">
-  
             </tbody>
+
 
 
           </table>
@@ -299,7 +305,10 @@
 <!-- include summernote css/js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 <script src="../../js_admin/jquery-ui.js"></script>
-<script src="../js/Manufacture.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="../js/Category.js"></script>
 <script src="../js/login.js"></script>
 <script>
     $(document).on('click', '.check-img', function(){

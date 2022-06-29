@@ -19,7 +19,11 @@
 </head>
 <body onLoad=" LoadOnce()" class="hold-transition sidebar-mini">
 <?php
-require ("../../../php/checkroleadmin.php");
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
 ?>
 <div class="wrapper">
   <!-- Navbar -->
@@ -69,7 +73,7 @@ require ("../../../php/checkroleadmin.php");
                 <i class="far fa-user-circle"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../Hien_thi/ChangeInf.html">Change Information</a>
+                <a class="dropdown-item" href="ChangeInf.php">Change Information</a>
                 <a class="dropdown-item" role="button" onclick="onClickButtonSignOut()" href="#"><i class="fas fa-sign-out-alt"></i>Log out(<data id="userNameLogin"></data>) </a>
                 <!-- làm logout là chuyển về trang đăng nhập và xóa jwt. -->
             </div>
@@ -82,10 +86,10 @@ require ("../../../php/checkroleadmin.php");
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; ">
     <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="../../img/taday.jpg"
            alt="logo Web" class="brand-image img-circle elevation-3" style="opacity: 1;">
-      <span class="brand-text font-weight-light">Admin</span>
+      <span class="brand-text font-weight-light"><?php echo $row['hoTen']?></span>
     </a>
 
     <!-- Sidebar -->
@@ -127,31 +131,31 @@ require ("../../../php/checkroleadmin.php");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Faculty.html" class="nav-link ">
+                <a href="../Chinh_sua_danh_muc/Faculty.php" class="nav-link ">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Class.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>       
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/News.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/User.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Admin.html" class="nav-link">
+                <a href="../Chinh_sua_danh_muc/Admin.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>Admin</p>
                 </a>
@@ -169,26 +173,26 @@ require ("../../../php/checkroleadmin.php");
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Hien_thi/Faculty.html" class="nav-link">
+                <a href="../Hien_thi/Faculty.php" class="nav-link">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="../Hien_thi/Class.html" class="nav-link">
+                <a href="../Hien_thi/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/News.html" class="nav-link">
+                <a href="../Hien_thi/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/User.html" class="nav-link">
+                <a href="../Hien_thi/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>

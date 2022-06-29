@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fruit</title>
 
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -16,8 +17,16 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/them.css">
   <link rel="stylesheet" href="../../dist/css/jquery-ui.min.css">
+  <link rel="stylesheet" href="./bill.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+?>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -27,7 +36,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="home.php" class="nav-link">Home</a>
+        <a href="../Hien_thi/home.php" class="nav-link">Home</a>
       </li>
     </ul>
 
@@ -66,7 +75,7 @@
                 <i class="far fa-user-circle"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../Hien_thi/ChangeInf.html">Change Information</a>
+                <a class="dropdown-item" href="../Hien_thi/ChangeInf.php">Change Information</a>
                 <a class="dropdown-item" role="button" onclick="onClickButtonSignOut()" href="#"><i class="fas fa-sign-out-alt"></i>Log out(<data id="userNameLogin"></data>) </a>
                 <!-- làm logout là chuyển về trang đăng nhập và xóa jwt. -->
             </div>
@@ -79,10 +88,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; ">
     <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="../../img/taday.jpg"
            alt="logo Web" class="brand-image img-circle elevation-3" style="opacity: 1;">
-      <span class="brand-text font-weight-light">Admin</span>
+        <span class="brand-text font-weight-light"><?php echo $row['hoTen']?></span>
     </a>
 
     <!-- Sidebar -->
@@ -108,13 +117,14 @@
           </div>
         </div>
       </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="fa-solid fa-file-circle-plus"></i>
               <p>
                 Add or update
@@ -123,31 +133,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Faculty.html" class="nav-link ">
+                <a href="Faculty.php" class="nav-link ">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Class.html" class="nav-link">
+                <a href="Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>       
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/News.html" class="nav-link">
+                <a href="News.php" class="nav-link active">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/User.html" class="nav-link">
+                <a href="User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Admin.html" class="nav-link">
+                <a href="Admin.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>Admin</p>
                 </a>
@@ -156,7 +166,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="fa-solid fa-list-check"></i>
               <p>
                 Management
@@ -165,26 +175,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Hien_thi/Faculty.html" class="nav-link">
+                <a href="../Hien_thi/Faculty.php" class="nav-link">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="../Hien_thi/Class.html" class="nav-link">
+                <a href="../Hien_thi/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
-              </li> 
+              </li>
               <li class="nav-item">
-                <a href="../Hien_thi/News.html" class="nav-link">
+                <a href="../Hien_thi/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/User.html" class="nav-link active">
+                <a href="../Hien_thi/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
@@ -210,7 +220,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Management</li>
+              <li class="breadcrumb-item active">Add or update</li>
             </ol>
           </div>
         </div>
@@ -219,85 +229,29 @@
 
     <!-- Main content -->
     <section class="content d-block" style="width: 100%;">
-
-      <div class="list" id="" style="width: 100%;">
-        <form class="form-inline d-flex" id="list-product" action="${base }#" method="get">
-          <div class="filter d-flex flex-row ">
-            <!-- dữ liệu để thực hiện tìm kiếm sản phẩm -->
-            <!-- <input type="hidden" id="page" name="page"> -->
-            <input type="text" id="keyword-search-user" name="keyword-search-user" class="form-control" placeholder="Search">
-            <button type="button" id="btnSearch" name="btnSearch" value="Search" onclick="clickButtonSearch()"  class="btn btn-primary">Seach</button>
+     <div class="m-auto" style="width: 80%;">
+      <form class="p-2 form-management" id="product" name="product" action="${base}/product" method="POST" style="border-radius: 5px; border: solid 1px #ccc; width: 100%;" modelAttribute="product">
+      <h2 class="mt-3" style="text-align: center; font-weight: 500; color: rgb(100, 87, 87);">CREATE NEWS</h2>
+        <div class="">
+          <div class="form-group">
+            <label for="">Title</label><br>
+            <input type="text" id="title" name="title" path="" Placeholder=" Title" value="" ></input>
           </div>
-        </form>
-        <form class="form-list-data" id="" name="" action="" method="post">
-          <table class=" mb-5" id="table">
-            <thead>
-              <tr>
-                <th style="width: 5%">
-                  ID User
-                </th>
-                <th>
-                  Name
-                </th>
-                <th>
-                  Age
-                </th>
-                <th>
-                  Address
-                </th>
-                <th>
-                  Phone Number
-                </th>
-                <th>
-                  Birthday
-                </th>
-                <th>
-                  Account
-                </th>
-                <th>
-                  Password
-                </th>
-                <th>
-                  Avatar
-                </th>
-                <th>
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody id="table-show-data-user">
-              <tr>
-                <td>1</td>
-                <td>Tô Văn Sang</td>
-                <td>20</td>
-                <td>Bac Ninh</td>
-                <td>0123456789</td>
-                <td>2001-11-10</td>
-                <td>2019601499</td>
-                <td>1234567</td>
-                <td></td>
-                <td>
-                    <a class="btn btn-primary" onclick="clickButtonEditInf(${user.id})" href="../Chinh_sua_danh_muc/User.html" id="edit-user-${user.id}" ><i
-                    class="far fa-edit"></i>
-                    
-                    </a>
-                    <button type="button" onclick="handleDeleteUser(${user.id})" class="btn btn-danger delete-product"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
-            </tbody>
-
-          </table>
-        </form>
-        <div class="mt-3 d-flex justify-content-center" >
-          <ul class="pagination " style="align-items: center;">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">15</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
+          
+          <div class="form-group" style="width: 95%;">
+            <label for="">Avatar</label><br>
+            <input type="file" class="form-control-file" id="avatar" name="avatar" multiple>
+          </div>
+          <div class="form-group" style="width: 88.5%;">
+            <label for="">Description</label><br>
+            <textarea id="summernote" class="categoryDescription" name="description" path="" required></textarea>
+          </div>
         </div>
+      
+        <div class="form-group">
+          <a href="#" class="btn btn-danger" id="create-category">Add Faculty</a>
+        </div>
+      </form>
       </div>
     </section>
     <!-- /.content -->
@@ -323,14 +277,51 @@
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../dist/js/adminlte.min.js"></script>
-
+<!-- jQuery Knob -->
+<script src="../../plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- Sparkline -->
+<script src="../../plugins/sparklines/sparkline.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script src="../../js_admin/them.js"></script>
 <!-- include summernote css/js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 <script src="../../js_admin/jquery-ui.js"></script>
+<script src="../js/Customer.js"></script>
 <script src="../js/User.js"></script>
+<script src="../js/Fruit.js"></script>
+<script src="../js/Bill.js"></script>
 <script src="../js/login.js"></script>
+<script>
+
+  $(".form-group table").on("click", ".remove", function () {
+      $(this).parent().parent().remove();
+  });
+
+  $(".add-more-fruits").on("click", function () {
+    var rowCount = $('#table-fruit-amount tr').length;
+    console.log(rowCount);
+    const card = `
+    <tr style="margin-left: 15xp; margin-top: 5px;">
+                <td>
+                    <select name="idFruit" id="show-all-fruits-input-${rowCount}" style="margin-top: 10px;" >
+                      
+                    </select>
+                </td>
+                <td>
+                    <input type="text" id="amount-fruit-${rowCount}" name="amountFruit"style="margin-top: 5px;" path="" Placeholder=" Amount"></input>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger remove">Remove</button>
+                </td>
+              </tr>`;
+    $(".form-group table").append(card);
+});
+
+
+</script>
+
 <script>
     $(document).on('click', '.check-img', function(){
       var imgId = $(document).find('.img-1 .abc').val();

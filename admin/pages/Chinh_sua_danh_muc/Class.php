@@ -17,9 +17,15 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/them.css">
   <link rel="stylesheet" href="../../dist/css/jquery-ui.min.css">
-  <link rel="stylesheet" href="./bill.css">
 </head>
 <body class="hold-transition sidebar-mini">
+<?php
+require_once ("../../../php/checkroleadmin.php");
+require_once ("../../../php/dbconnection.php");
+$sql = "SELECT * FROM nguoidung WHERE idNguoiDung=".$_COOKIE['1'];
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+?>
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -68,7 +74,7 @@
                 <i class="far fa-user-circle"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="../Hien_thi/ChangeInf.html">Change Information</a>
+                <a class="dropdown-item" href="../Hien_thi/ChangeInf.php">Change Information</a>
                 <a class="dropdown-item" role="button" onclick="onClickButtonSignOut()" href="#"><i class="fas fa-sign-out-alt"></i>Log out(<data id="userNameLogin"></data>) </a>
                 <!-- làm logout là chuyển về trang đăng nhập và xóa jwt. -->
             </div>
@@ -81,10 +87,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; ">
     <!-- Brand Logo -->
-    <a href="../../index.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="../../img/taday.jpg"
            alt="logo Web" class="brand-image img-circle elevation-3" style="opacity: 1;">
-      <span class="brand-text font-weight-light">Admin</span>
+        <span class="brand-text font-weight-light"><?php echo $row['hoTen']?></span>
     </a>
 
     <!-- Sidebar -->
@@ -110,7 +116,6 @@
           </div>
         </div>
       </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -126,31 +131,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Faculty.html" class="nav-link ">
+                <a href="Faculty.php" class="nav-link ">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Class.html" class="nav-link">
+                <a href="Class.php" class="nav-link active">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>       
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/News.html" class="nav-link active">
+                <a href="News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/User.html" class="nav-link">
+                <a href="User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Chinh_sua_danh_muc/Admin.html" class="nav-link">
+                <a href="Admin.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>Admin</p>
                 </a>
@@ -168,26 +173,26 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../Hien_thi/Faculty.html" class="nav-link">
+                <a href="../Hien_thi/Faculty.php" class="nav-link">
                   <i class="fa-solid fa-list-ul"></i>
                   <p>Faculty</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="../Hien_thi/Class.html" class="nav-link">
+                <a href="../Hien_thi/Class.php" class="nav-link">
                   <i class="fa-solid fa-industry"></i>
                   <p>Class</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/News.html" class="nav-link">
+                <a href="../Hien_thi/News.php" class="nav-link">
                   <i class="fa-solid fa-file-invoice-dollar"></i>
                   <p>News</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../Hien_thi/User.html" class="nav-link">
+                <a href="../Hien_thi/User.php" class="nav-link">
                   <i class="fa-solid fa-user-gear"></i>
                   <p>User</p>
                 </a>
@@ -224,28 +229,43 @@
     <section class="content d-block" style="width: 100%;">
      <div class="m-auto" style="width: 80%;">
       <form class="p-2 form-management" id="product" name="product" action="${base}/product" method="POST" style="border-radius: 5px; border: solid 1px #ccc; width: 100%;" modelAttribute="product">
-      <h2 class="mt-3" style="text-align: center; font-weight: 500; color: rgb(100, 87, 87);">CREATE NEWS</h2>
+      <h2 class="mt-3" style="text-align: center; font-weight: 500; color: rgb(100, 87, 87);">CLASS MANAGEMENT</h2>
         <div class="">
           <div class="form-group">
-            <label for="">Title</label><br>
-            <input type="text" id="title" name="title" path="" Placeholder=" Title" value="" ></input>
+            <label for="">Class name</label><br>
+            <select name="" id="school-year" >
+              <option value="year-option">Công Nghệ Thông Tin</option>
+              <option value="year-option1">Cơ Khí</option>
+              <option value="year-option1">Ô Tô</option>
+            </select>
+            <!-- <label for="">Phone Number</label><br>
+            <input type="text" id="manufacture-phoneNumber-in-manufacture" name="phoneNumber" path="" Placeholder=" Phone Number" required></input> -->
           </div>
-          
-          <div class="form-group" style="width: 95%;">
-            <label for="">Avatar</label><br>
-            <input type="file" class="form-control-file" id="avatar" name="avatar" multiple>
+          <div class="form-group">
+            <label for="">Class name</label><br>
+            <input type="text" id="manufacture-name-in-manufacture" name="name" path="" Placeholder=" Class name" required></input>
           </div>
-          <div class="form-group" style="width: 88.5%;">
-            <label for="">Description</label><br>
-            <textarea id="summernote" class="categoryDescription" name="description" path="" required></textarea>
+      
+          <div class="form-group">
+            <label for="">Class code</label><br>
+            <input type="text" id="manufacture-address-in-manufacture" name="address" path="" Placeholder="Class code" required></input>
           </div>
+          <div class="form-group">
+            <label for="">School year</label><br>
+            <input type="text" id="manufacture-address-in-manufacture" name="address" path="" Placeholder="School year" required></input>
+          </div>
+
+      
         </div>
       
         <div class="form-group">
-          <a href="#" class="btn btn-danger" id="create-category">Add Faculty</a>
+          <a href="#" id="create-manufacture"  class="btn btn-danger">Add New Class</a>
+          <button type="button" onclick="onclickButtonSaveEditManufacture()" class="btn btn-primary">Save Class</button>
+          <a href=""></a>
         </div>
       </form>
       </div>
+
     </section>
     <!-- /.content -->
   </div>
@@ -278,43 +298,8 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script src="../../js_admin/them.js"></script>
-<!-- include summernote css/js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
-<script src="../../js_admin/jquery-ui.js"></script>
-<script src="../js/Customer.js"></script>
-<script src="../js/User.js"></script>
-<script src="../js/Fruit.js"></script>
-<script src="../js/Bill.js"></script>
+<script src="../js/Manufacture.js"></script>
 <script src="../js/login.js"></script>
-<script>
-
-  $(".form-group table").on("click", ".remove", function () {
-      $(this).parent().parent().remove();
-  });
-
-  $(".add-more-fruits").on("click", function () {
-    var rowCount = $('#table-fruit-amount tr').length;
-    console.log(rowCount);
-    const card = `
-    <tr style="margin-left: 15xp; margin-top: 5px;">
-                <td>
-                    <select name="idFruit" id="show-all-fruits-input-${rowCount}" style="margin-top: 10px;" >
-                      
-                    </select>
-                </td>
-                <td>
-                    <input type="text" id="amount-fruit-${rowCount}" name="amountFruit"style="margin-top: 5px;" path="" Placeholder=" Amount"></input>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-danger remove">Remove</button>
-                </td>
-              </tr>`;
-    $(".form-group table").append(card);
-});
-
-
-</script>
-
 <script>
     $(document).on('click', '.check-img', function(){
       var imgId = $(document).find('.img-1 .abc').val();
@@ -325,26 +310,6 @@
       var index = $('#table-product tr').length;
       return index + 1;
     }
-</script>
-<script>
-  $(document).ready(function () {
-      $('#summernote').summernote();
-  });
-</script>
-<script>
-  // Yêu cầu JQUERY UI thay thế INPUT text có id="txtNgayThangNamSinh" thành công cụ chọn ngày tháng Date Picker
-  $('#startDate').datepicker(
-    {
-      showButtonPanel: true,    // option hiển thị nút "Today", "Done"
-      dateFormat: 'dd/mm/yy'    // option Định dạng format ngày tháng; d: Day Ngày; m: Month tháng; y: Year năm
-    }
-  );
-  $('#endDate').datepicker(
-    {
-      showButtonPanel: true,    // option hiển thị nút "Today", "Done"
-      dateFormat: 'dd/mm/yy'    // option Định dạng format ngày tháng; d: Day Ngày; m: Month tháng; y: Year năm
-    }
-  );
 </script>
 </body>
 </html>
