@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information</title>
     <link rel="stylesheet" href="../css/inf.css">
@@ -27,6 +27,7 @@
 <?php
 require_once "../php/checkroleuser.php";
 require "../php/dbconnection.php";
+header("Content-type: text/html; charset=utf-8");
 $sql = "SELECT * FROM nguoidung JOIN lop ON nguoidung.idLop = lop.idLop JOIN khoa ON lop.idKhoa = khoa.idKhoa WHERE idNguoiDung = '" . $_COOKIE["2"] . "'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -64,7 +65,7 @@ $result = $conn->query($sql);
 <div class="body">
     <div class="body-left">
         <?php if ($row["avt"] != null) { ?>
-            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['avt']); ?>" class="avatar"
+            <img src="../uploads/<?=$row['avt']?>" class="avatar"
                  alt="" srcset="">
         <?php } else { ?>
             <img src="../image/avtnull.png" class="avatar" alt="" srcset="">
@@ -72,7 +73,7 @@ $result = $conn->query($sql);
         <?php if (isset($_GET['error'])): ?>
             <p><?php echo $_GET['error']; ?></p>
         <?php endif ?>
-        <form action="upload.php"
+        <form action="../php/upload.php"
               method="post"
               enctype="multipart/form-data">
 
@@ -125,7 +126,7 @@ $result = $conn->query($sql);
                     </div>
                     <div class="col2-item-content">
                         <input type="text" id="birthday" name="birthday" path="" placeholder="Date of birth"
-                               value="<?php echo date_format(date_create($row["ngaySinh"]), 'd/m/Y') ?>"></input>
+                               value="<?php echo date_format(date_create($row["ngaySinh"]), 'd/m/Y') ?>" readonly></input>
                     </div>
                 </div>
 

@@ -1,0 +1,39 @@
+.body {
+    margin-top: 150px;
+    margin-left: 250px;
+    margin-right: 250px;
+    background-color: rgb(250, 250, 250);
+    min-height: 500px;
+}
+.body .item {
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
+	display: flex;
+}
+.body .item .content{
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+}
+.body .item .content .infor{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.body .item2 {
+    margin-top: 50px;
+    width: 100%;
+    height: 400px;
+	display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 50px;
+}
+.body .item2 .content{
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+}

@@ -1,0 +1,12 @@
+.body {
+    margin-top: 100px;
+    margin-left: 220px;
+    margin-right: 220px;
+    min-height: 550px;
+    font-size: 24px;
+    background-image: url("../image/cover.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 100px;
+    color: white;
+}
